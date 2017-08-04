@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Monsarda/builder/issues"
   },
-  "homepage": "https://github.com/Monsarda/builder#readme"
+  "homepage": "https://github.com/Monsarda/builder#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
 }
