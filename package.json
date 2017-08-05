@@ -18,7 +18,10 @@
   "homepage": "https://github.com/Monsarda/builder#readme",
   "dependencies": {
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-less": "^3.3.2",
     "gulp-sourcemaps": "^2.6.0"
-  }
+  },
+  "devDependencies": {}
 }
