@@ -8,7 +8,7 @@ gulp.task('less', function(){
 	gulp.src('assets/less/**/*.less')
 		.pipe(sourcemaps.init())
 			.pipe(less())
-		.pipe(sourcemaps.write('map/'))
+		.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest('public/css'));
 });
 
