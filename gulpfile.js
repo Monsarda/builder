@@ -20,7 +20,6 @@ gulp.task('css-dev', function(){
             browsers: ['last 25 versions'],
             cascade: true
         }))
-        .pipe(sourcemaps.init())
         .pipe(concat('style.css'))
         .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('public/css')).on('end', function() {
