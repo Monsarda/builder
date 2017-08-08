@@ -8,8 +8,10 @@ let gulp = require('gulp'),
     gutil = require('gulp-util'),
     chalk = require('chalk');
 
+// Используем Enter Point для последовательной компиляции
+
 gulp.task('css-dev', function(){
-	gulp.src('assets/less/**/*.less')
+	gulp.src('assets/less/index.less')
 		.pipe(sourcemaps.init())
 		.pipe(less()).on('error', function(error) {
             gutil.log('Error Less: ', '\'' + chalk.red(error.message));
