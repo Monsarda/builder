@@ -26,6 +26,15 @@ gulp.task('css-dev', function(){
     });
 });
 
+gulp.task('js-dev', function(){
+
+    gulp.src('assets/js/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('public/js'));
+
+});
+
 gulp.task('watch', function(){
   	gulp.watch('assets/less/index.less', ['css-dev']);
 });
