@@ -31,6 +31,7 @@ gulp.task('js-dev', function(){
 
     gulp.src('assets/js/**/*.js')
         .pipe(sourcemaps.init())
+        .pipe(concat('script.js'))
         .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('public/js'));
 
