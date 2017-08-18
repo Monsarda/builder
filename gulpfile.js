@@ -62,6 +62,34 @@ let config = {
         port: 8000,
         livereload: true
     }
+}
+
+let mess = {
+
+    html: {
+        success: "HTML Compilation Done",
+        error: "Error: <%= error.message %>"
+    },
+    style: {
+        success: "Less Compilation Done",
+        error: "Error: <%= error.message %>"
+    },
+    js: {
+        success: "JS Compilation Done",
+        error: "Error: <%= error.message %>"
+    },
+    image: {
+        success: "IMAGES Compilation Done",
+        error: "Error: <%= error.message %>"
+    },
+    fonts: {
+        success: "FONTS Compilation Done",
+        error: "Error: <%= error.message %>"
+    },
+    files: {
+        success: "FILES Compilation Done",
+        error: "Error: <%= error.message %>"
+    }
 
 }
 
@@ -73,7 +101,7 @@ gulp.task('server:build', function () {
 gulp.task('style:build', function () {
     return watch(path.watch.style, function(){
         gulp.src(path.src.style)
-        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+        .pipe(plumber({errorHandler: notify.onError(mess.style.error)}))
         .pipe(sourcemaps.init())
         .pipe(less())   
         .pipe(autoprefixer({
@@ -83,7 +111,7 @@ gulp.task('style:build', function () {
         .pipe(cleanCss({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(path.build.style))
-        .pipe(notify('Less Compilation Done'))
+        .pipe(notify(mess.style.success))
         .pipe(connect.reload());
     });
 });
@@ -91,9 +119,9 @@ gulp.task('style:build', function () {
 gulp.task('js:build', function () {
     return watch(path.watch.js, function(){
         gulp.src(path.src.js)
-        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+        .pipe(plumber({errorHandler: notify.onError(mess.js.error)}))
         .pipe(jsValidate())
-        .pipe(notify('JavaScript Finish'))
+        .pipe(notify(mess.js.success))
         .pipe(sourcemaps.init())
         .pipe(gulp.dest(path.build.js+'paths'))
         .pipe(concat('script.js'))
@@ -115,7 +143,7 @@ gulp.task('image:build', function () {
             svgoPlugins: [{removeViewBox: true}]
         }))
         .pipe(gulp.dest(path.build.img))
-        .pipe(notify('Images Finish'))
+        .pipe(notify(mess.image.success))
         .pipe(connect.reload());
         
     });
@@ -134,7 +162,7 @@ gulp.task('html:build', function () {
         }))
         .pipe(htmlhint.reporter())
         .pipe(gulp.dest(path.build.html))
-        .pipe(notify('Html Finish'))
+        .pipe(notify(mess.html.success))
         .pipe(connect.reload());
         
     });
@@ -144,7 +172,7 @@ gulp.task('fonts:build', function () {
     return watch(path.watch.fonts, function(){
         gulp.src(path.src.fonts)
         .pipe(gulp.dest(path.build.fonts))
-        .pipe(notify('Fonts Finish'))
+        .pipe(notify(mess.fonts.success))
         .pipe(connect.reload());
     });
 });
@@ -153,7 +181,7 @@ gulp.task('files:build', function () {
     return watch(path.watch.files, function(){
         gulp.src(path.src.files)
         .pipe(gulp.dest(path.build.files))
-        .pipe(notify('Fonts Finish'))
+        .pipe(notify(mess.files.success))
         .pipe(connect.reload());
     });
 });
