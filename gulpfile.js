@@ -91,7 +91,7 @@ let mess = {
     files: {
         success: "FILES Compilation Done",
         error: "Error: <%= error.message %>"
-    }
+    },
     libs: {
         success: "LIBS Compilation Done",
         error: "Error: <%= error.message %>"
