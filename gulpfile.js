@@ -34,7 +34,8 @@ let path = {
         js: 'build/js/',
         img: 'build/img/',
         fonts: 'build/fonts/',
-        files: 'build/files/'
+        files: 'build/files/',
+        libs: 'build/libs/'
     },
     src: {
         html: 'src/html/*.html',
@@ -42,7 +43,8 @@ let path = {
         js: 'src/js/*.js',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*',
-        files: 'src/files/**/*.*'
+        files: 'src/files/**/*.*',
+        libs: 'src/libs/**/*.*'
     },
     watch: {
         html: 'src/html/**/*.html',
@@ -50,7 +52,8 @@ let path = {
         js: 'src/js/*.js',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*',
-        files: 'src/files/**/*.*'
+        files: 'src/files/**/*.*',
+        libs: 'src/libs/**/*.*'
     }
 }
 
@@ -87,6 +90,10 @@ let mess = {
     },
     files: {
         success: "FILES Compilation Done",
+        error: "Error: <%= error.message %>"
+    }
+    libs: {
+        success: "LIBS Compilation Done",
         error: "Error: <%= error.message %>"
     }
 
@@ -185,6 +192,15 @@ gulp.task('files:build', function () {
     });
 });
 
+gulp.task('libs:build', function () {
+    return watch(path.watch.libs, function(){
+        gulp.src(path.src.libs)
+        .pipe(gulp.dest(path.build.libs))
+        .pipe(notify(mess.libs.success))
+        .pipe(connect.reload());
+    });
+});
+
 gulp.task('build', [
     'server:build',
     'html:build',
@@ -192,6 +208,7 @@ gulp.task('build', [
     'style:build',
     'fonts:build',
     'image:build',
-    'files:build'
+    'files:build',
+    'libs:build'
 ]);
 
