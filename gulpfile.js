@@ -2,13 +2,13 @@
 
 let gulp = require('gulp'),
     // Компилятор LESS
-	less = require('gulp-less'),
+    less = require('gulp-less'),
     // Карта исходников
-	sourcemaps = require('gulp-sourcemaps'),
+    sourcemaps = require('gulp-sourcemaps'),
     // Вендорные префиксы
-	autoprefixer = require('gulp-autoprefixer'),
+    autoprefixer = require('gulp-autoprefixer'),
     // Конкатенация файлов
-	concat = require('gulp-concat'),
+    concat = require('gulp-concat'),
     // Watcher custom
     watch = require('gulp-watch'),
     // Ловим ошибки
@@ -25,7 +25,6 @@ let gulp = require('gulp'),
     cleanCss = require('gulp-clean-css'),
     // Web Server
     connect = require('gulp-connect');
-
 
 let path = {
 
