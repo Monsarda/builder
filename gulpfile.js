@@ -49,7 +49,6 @@ gulp.task('style:build', function () {
             browsers: ['last 50 versions']
         }))
         .pipe(concat('style.css'))
-        .pipe(cleanCss({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(path.build.style))
         .pipe(notify(mess.style.success))
