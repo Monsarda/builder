@@ -24,80 +24,13 @@ let gulp = require('gulp'),
     // Min CSS
     cleanCss = require('gulp-clean-css'),
     // Web Server
-    connect = require('gulp-connect');
-
-let path = {
-
-    build: {
-        html: 'build/',
-        style: 'build/css/',
-        js: 'build/js/',
-        img: 'build/img/',
-        fonts: 'build/fonts/',
-        files: 'build/files/',
-        libs: 'build/libs/'
-    },
-    src: {
-        html: 'src/html/*.html',
-        style: 'src/less/index.less',
-        js: 'src/js/*.js',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*',
-        files: 'src/files/**/*.*',
-        libs: 'src/libs/**/*.*'
-    },
-    watch: {
-        html: 'src/html/**/*.html',
-        style: 'src/less/**/*.less',
-        js: 'src/js/*.js',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*',
-        files: 'src/files/**/*.*',
-        libs: 'src/libs/**/*.*'
-    }
-}
-
-let config = {
-
-    server: {
-        root: 'build',
-        port: 8000,
-        livereload: true
-    }
-}
-
-let mess = {
-
-    html: {
-        success: "HTML Compilation Done",
-        error: "Error: <%= error.message %>"
-    },
-    style: {
-        success: "Less Compilation Done",
-        error: "Error: <%= error.message %>"
-    },
-    js: {
-        success: "JS Compilation Done",
-        error: "Error: <%= error.message %>"
-    },
-    image: {
-        success: "IMAGES Compilation Done",
-        error: "Error: <%= error.message %>"
-    },
-    fonts: {
-        success: "FONTS Compilation Done",
-        error: "Error: <%= error.message %>"
-    },
-    files: {
-        success: "FILES Compilation Done",
-        error: "Error: <%= error.message %>"
-    },
-    libs: {
-        success: "LIBS Compilation Done",
-        error: "Error: <%= error.message %>"
-    }
-
-}
+    connect = require('gulp-connect'),
+    // Paths
+    path = require('./paths'),
+    // Configs
+    config = require('./config'),
+    // Messages
+    mess = require('./messages');
 
 gulp.task('server:build', function () {
     connect.server(config.server);
