@@ -25,6 +25,8 @@ let gulp = require('gulp'),
     cleanCss = require('gulp-clean-css'),
     // Web Server
     connect = require('gulp-connect'),
+    // Rename
+    rename = require('gulp-rename'),
     // Paths
     path = require('./paths'),
     // Configs
