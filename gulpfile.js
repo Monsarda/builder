@@ -146,3 +146,7 @@ gulp.task('build', [
     'libs:build'
 ]);
 
+gulp.task('compress', [
+    'img:compress',
+]);
+
