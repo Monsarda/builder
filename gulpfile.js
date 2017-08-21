@@ -133,17 +133,6 @@ gulp.task('libs:build', function () {
     });
 });
 
-gulp.task('build', [
-    'server:build',
-    'html:build',
-    'js:build',
-    'style:build',
-    'fonts:build',
-    'image:build',
-    'files:build',
-    'libs:build'
-]);
-
 // COMPRESS //
 gulp.task('style:compress', function () {
 
@@ -188,15 +177,22 @@ gulp.task('image:compress', function () {
 
 });
 
-gulp.task('compress', ['style:compress', 'js:compress', 'image:compress']);
+gulp.task('build', ['server:build','html:build','js:build','style:build','fonts:build','image:build','files:build','libs:build']);
+
+gulp.task('compress', ['style:compress','js:compress','image:compress']);
 
 gulp.task('production', function() {
+
     prompt.start();
 
     prompt.get(['project'], function (err, result) {
-        return gulp.src('build/**/*')
-        .pipe(gulp.dest('../'+result.project+'/'));
+
+        gulp.src('build/**/*').pipe(gulp.dest('../'+result.project+'/'));
+
+        gulp.src('src/**/*').pipe(gulp.dest('../'+result.project+'_src/'));
+
     });
+
 });
 
 
