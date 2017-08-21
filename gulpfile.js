@@ -27,6 +27,10 @@ let gulp = require('gulp'),
     connect = require('gulp-connect'),
     // Rename
     rename = require('gulp-rename'),
+    // JS Min 
+    uglify = require('gulp-uglify'),
+    // JS Min 
+    prompt = require('prompt'),
     // Paths
     path = require('./paths'),
     // Configs
@@ -76,12 +80,6 @@ gulp.task('image:build', function () {
     return watch(path.watch.img, function(){
         gulp.src(path.src.img)
         .pipe(plumber())
-        .pipe(imagemin({
-            interlaced: true,
-            progressive: true,
-            optimizationLevel: 5,
-            svgoPlugins: [{removeViewBox: true}]
-        }))
         .pipe(gulp.dest(path.build.img))
         .pipe(notify(mess.image.success))
         .pipe(connect.reload());
@@ -146,7 +144,59 @@ gulp.task('build', [
     'libs:build'
 ]);
 
-gulp.task('compress', [
-    'img:compress',
-]);
+// COMPRESS //
+gulp.task('style:compress', function () {
+
+    gulp.src(path.build.style+'/*.css')
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(cleanCss({compatibility: 'ie8'}))
+    .pipe(rename({
+        suffix: '.min'
+    }))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(path.build.style));
+
+});
+
+gulp.task('js:compress', function () {
+
+    gulp.src(path.build.js+'/*.js')
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(rename({
+        suffix: '.min'
+    }))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(path.build.js));
+
+});
+
+gulp.task('image:compress', function () {
+
+    gulp.src(path.build.img+'/**/*')
+    .pipe(plumber())
+    .pipe(imagemin({
+        interlaced: true,
+        progressive: true,
+        optimizationLevel: 5,
+        svgoPlugins: [{removeViewBox: true}]
+    }))
+    .pipe(gulp.dest(path.build.img))
+    .pipe(notify(mess.image.success))
+
+});
+
+gulp.task('compress', ['style:compress', 'js:compress', 'image:compress']);
+
+gulp.task('production', function() {
+    prompt.start();
+
+    prompt.get(['project'], function (err, result) {
+        return gulp.src('build/**/*')
+        .pipe(gulp.dest('../'+result.project+'/'));
+    });
+});
+
 
