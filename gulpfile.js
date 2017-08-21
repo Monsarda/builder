@@ -187,9 +187,9 @@ gulp.task('production', function() {
 
     prompt.get(['project'], function (err, result) {
 
-        gulp.src('build/**/*').pipe(gulp.dest('../'+result.project+'/'));
+        gulp.src('build/**/*').pipe(gulp.dest('../projects_build/'+result.project+'/'));
 
-        gulp.src('src/**/*').pipe(gulp.dest('../'+result.project+'_src/'));
+        gulp.src('src/**/*').pipe(gulp.dest('../projects_build/'+result.project+'_src/'));
 
     });
 
